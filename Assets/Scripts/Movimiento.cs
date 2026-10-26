@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Movimiento : MonoBehaviour
 {
@@ -7,15 +6,24 @@ public class Movimiento : MonoBehaviour
 
     void Update()
     {
-        Vector2 dir = Vector2.zero;
-        var k = Keyboard.current;
-        if (k == null) return;
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Translate(Vector3.left * velocidad * Time.deltaTime);
+        }
 
-        if (k.leftArrowKey.isPressed || k.aKey.isPressed) dir.x -= 1;
-        if (k.rightArrowKey.isPressed || k.dKey.isPressed) dir.x += 1;
-        if (k.upArrowKey.isPressed || k.wKey.isPressed) dir.y += 1;
-        if (k.downArrowKey.isPressed || k.sKey.isPressed) dir.y -= 1;
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Translate(Vector3.right * velocidad * Time.deltaTime);
+        }
 
-        transform.Translate(dir * velocidad * Time.deltaTime);
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.Translate(Vector3.up * velocidad * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(Vector3.down * velocidad * Time.deltaTime);
+        }
     }
 }
